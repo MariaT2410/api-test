@@ -5,13 +5,16 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import model.AuthToken;
 import model.Status;
 import model.Ticket;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.util.Random;
 
 import static io.restassured.RestAssured.given;
 
@@ -45,26 +48,36 @@ public abstract class BaseTest {
     @Test()
     protected AuthToken login() {
         // todo: отправить запрос на получения токена, используя учетные данные из "config.properties"
-        AuthToken authToken = given()
-                .auth().basic("admin", "adminat")
+        AuthToken authToken1 = new AuthToken();
+        authToken1.setUsername("admin");
+        authToken1.setPassword("adminat");
+
+        Response response = given()
+                .spec(RestAssured.requestSpecification)
+                .auth().preemptive().basic("admin", "adminat")
+                .body(authToken1)
                 .when().post("/api/login")
                 .then()
                 .statusCode(200)
-                .extract()
-                .body()
-                .as(AuthToken.class);
-        return authToken;
+                .extract().response();
+
+        System.out.println("OAuth Response - " + response.getBody().asString());
+        Assert.assertNotNull(response);
+        authToken1.setToken(response.getBody().asString());
+        return authToken1;
     }
 
     @Test()
     protected Ticket buildNewTicket(Status status, int priority) {
         // todo: создать объект с тестовыми данными
         Ticket newTicket = new Ticket();
+        newTicket.setId(new Random().nextInt(500000));
         newTicket.setStatus(status.getCode());
         newTicket.setPriority(priority);
         newTicket.setTitle("Title");
         newTicket.setQueue(3);
         //newTicket.setCreated("");
+        if (login() == null){newTicket.setSubmitter_email("name@mail.ru");}
         return newTicket;
     }
 
@@ -73,7 +86,7 @@ public abstract class BaseTest {
         // todo: отправить HTTP запрос для создания тикета
         Ticket ticket1 = given()
                 .body(ticket)
-                .when().post("/api/tickets/")
+                .when().post("/api/tickets")
                 .then().statusCode(201)
                 .extract()
                 .body()

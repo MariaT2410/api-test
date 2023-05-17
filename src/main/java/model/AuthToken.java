@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class AuthToken {
     // todo: serialized поля, согласно swagger, а также геттеры и сеттеры
-    @SerializedName("Username")
+    @SerializedName("username")
     private String username;
 
-    @SerializedName("Password")
+    @SerializedName("password")
     private String password;
 
-    @SerializedName("Token")
+    @SerializedName("token")
     private String token;
 
     public String getUsername() {

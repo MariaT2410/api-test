@@ -20,7 +20,7 @@ public class Ticket {
     @JsonIgnore
     public String assigned_to; // необязательное
 
-    @SerializedName("Title")
+    @SerializedName("title")
     private String title;
 
     public String created; //$date-time Дата, когда тикет впервые создан
@@ -33,17 +33,17 @@ public class Ticket {
 
     private boolean on_hold; // Если билет находится в режиме ожидания, он не будет автоматически продлен.
 
-    @SerializedName("Description")
+    @SerializedName("description")
     private String description; //Содержание запроса клиентов
    // private String resolution; //Разрешение, предоставленное заказчику нашими сотрудниками.
 
-    @SerializedName("Priority")
+    @SerializedName("priority")
     private Integer priority;
     //private Date last_escalation;
 
    // public String secret_key;
 
-    @SerializedName("Queue")
+    @SerializedName("queue")
     private Integer queue;
 
     @JsonIgnore
