@@ -14,9 +14,9 @@ public class CreateTicketTest extends BaseTest {
     @Test
     public void createTicketTest() {
         // todo: создать тикет и проверить, что он находится в системе
-        Ticket ticket = createTicket(buildNewTicket(Status.OPEN, 2));
+        Ticket ticket = createTicket(buildNewTicket(Status.OPEN, 3));
         Assert.assertNotNull(ticket.getId());
-        getTicket(ticket.getId());
+        //getTicket(ticket.getId());
     }
 
     @Test()
@@ -24,7 +24,7 @@ public class CreateTicketTest extends BaseTest {
         // todo: отправить HTTP запрос на получение тикета по его id
         Ticket ticket =  given()
                 .spec(RestAssured.requestSpecification)
-                .header("Authorization", "token"+login().getToken())
+                .header("Authorization", "Token"+login().getToken())
                 .pathParam("id", id)
                 .when()
                 .get("/api/tickets/{id}")

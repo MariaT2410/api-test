@@ -13,7 +13,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+
+//import org.json.JSONObject;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 import static io.restassured.RestAssured.given;
@@ -34,7 +37,7 @@ public abstract class BaseTest {
         // todo: подготовить глобальные преднастройки для запросов
         RestAssured.requestSpecification = new RequestSpecBuilder()
                 .setBaseUri("https://at-sandbox.workbench.lanit.ru") // задаём базовый адрес каждого ресурса
-                .addHeader("base_uri", System.getProperty("base.uri"))
+                .addHeader("base.uri", System.getProperty("base.uri"))
                 .setAccept(ContentType.JSON)
                 .setContentType(ContentType.JSON)
                 .log(LogDetail.ALL)
@@ -64,6 +67,9 @@ public abstract class BaseTest {
         System.out.println("OAuth Response - " + response.getBody().asString());
         Assert.assertNotNull(response);
         authToken1.setToken(response.getBody().asString());
+
+        String jsonString = new com.google.gson.Gson().toJson(authToken1);
+        System.out.println(authToken1.getToken());
         return authToken1;
     }
 
@@ -74,10 +80,12 @@ public abstract class BaseTest {
         newTicket.setId(new Random().nextInt(500000));
         newTicket.setStatus(status.getCode());
         newTicket.setPriority(priority);
-        newTicket.setTitle("Title");
-        newTicket.setQueue(3);
-        //newTicket.setCreated("");
+        newTicket.setTitle("Title"+ newTicket.getId().toString());
+        newTicket.setQueue(2);
+        newTicket.setCreated(LocalDateTime.now().toString());
+        newTicket.setModified(LocalDateTime.now().toString());
         if (login() == null){newTicket.setSubmitter_email("name@mail.ru");}
+        System.out.println(login());
         return newTicket;
     }
 
@@ -85,13 +93,12 @@ public abstract class BaseTest {
     protected Ticket createTicket(Ticket ticket) {
         // todo: отправить HTTP запрос для создания тикета
         Ticket ticket1 = given()
+                .spec(RestAssured.requestSpecification)
                 .body(ticket)
                 .when().post("/api/tickets")
                 .then().statusCode(201)
                 .extract()
-                .body()
                 .as(Ticket.class);
-
         return ticket1;
     }
 }
