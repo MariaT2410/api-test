@@ -57,19 +57,21 @@ public abstract class BaseTest {
 
         Response response = given()
                 .spec(RestAssured.requestSpecification)
-                .auth().preemptive().basic("admin", "adminat")
+                .header("Authorization", "Basic " + authToken1)
+                //.auth().preemptive().basic("admin", "adminat")
                 .body(authToken1)
                 .when().post("/api/login")
                 .then()
                 .statusCode(200)
                 .extract().response();
 
-        System.out.println("OAuth Response - " + response.getBody().asString());
+        response.jsonPath().get("token");
+        //System.out.println("OAuth Response - " + response.getBody().asString());
         Assert.assertNotNull(response);
-        authToken1.setToken(response.getBody().asString());
+        authToken1.setToken(response.jsonPath().get("token"));
 
-        String jsonString = new com.google.gson.Gson().toJson(authToken1);
-        System.out.println(authToken1.getToken());
+        //String jsonString = new com.google.gson.Gson().toJson(authToken1);
+        //System.out.println(authToken1.getToken());
         return authToken1;
     }
 
@@ -82,10 +84,13 @@ public abstract class BaseTest {
         newTicket.setPriority(priority);
         newTicket.setTitle("Title"+ newTicket.getId().toString());
         newTicket.setQueue(2);
+
         newTicket.setCreated(LocalDateTime.now().toString());
         newTicket.setModified(LocalDateTime.now().toString());
-        if (login() == null){newTicket.setSubmitter_email("name@mail.ru");}
-        System.out.println(login());
+        newTicket.setOn_hold(true);
+
+        newTicket.setSubmitter_email("admin@mailcom.ru");
+        newTicket.setAssigned_to("admin");
         return newTicket;
     }
 
@@ -94,6 +99,7 @@ public abstract class BaseTest {
         // todo: отправить HTTP запрос для создания тикета
         Ticket ticket1 = given()
                 .spec(RestAssured.requestSpecification)
+                //.header("Authorization", "Token"+login().getToken())
                 .body(ticket)
                 .when().post("/api/tickets")
                 .then().statusCode(201)
