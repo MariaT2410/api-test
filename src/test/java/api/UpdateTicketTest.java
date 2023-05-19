@@ -29,6 +29,7 @@ public class UpdateTicketTest extends BaseTest {
         given()
                 .spec(RestAssured.requestSpecification)
                 .header("Authorization", "Token "+login().getToken())
+                //.pathParam("id", ticket.getId())
                 .body(ticket)
                 .when()
                 .put("/api/tickets")
@@ -36,5 +37,23 @@ public class UpdateTicketTest extends BaseTest {
                 .statusCode(405);
         //Assert.assertNotNull(ticket);
 
+    }
+    @Test()
+    protected Ticket getTicket(int id) {
+        // todo: отправить HTTP запрос на получение тикета по его id
+
+        System.out.println("Token"+login());
+        Ticket ticket =  given()
+                .spec(RestAssured.requestSpecification)
+                .header("Authorization", "Token "+login().getToken())
+                .pathParam("id", id)
+                .when()
+                .get("/api/tickets/{id}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(Ticket.class);
+        Assert.assertNotNull(ticket);
+        return ticket;
     }
 }
