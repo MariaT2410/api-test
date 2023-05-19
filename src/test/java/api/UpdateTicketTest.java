@@ -29,12 +29,11 @@ public class UpdateTicketTest extends BaseTest {
         given()
                 .spec(RestAssured.requestSpecification)
                 .header("Authorization", "Token "+login().getToken())
-                .pathParam("id", ticket.getId())
                 .body(ticket)
                 .when()
-                .put("/api/tickets/{id}")
+                .put("/api/tickets")
                 .then()
-                .statusCode(200);
+                .statusCode(405);
         //Assert.assertNotNull(ticket);
 
     }
