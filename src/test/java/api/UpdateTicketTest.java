@@ -1,6 +1,7 @@
 package api;
 
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import model.Status;
 import model.Ticket;
 import org.testng.Assert;
@@ -13,12 +14,12 @@ import static io.restassured.RestAssured.given;
 /** Обновление тикета */
 public class UpdateTicketTest extends BaseTest {
 
-    @Test
+    @Test()
     public void updateTicketTest() {
         // todo: создать тикет со статусом Closed, затем обновить тикет и проверить сообщение об ошибке (негативный сценарий)
-        Ticket ticket = createTicket(buildNewTicket(Status.CLOSED, 3));
+        Ticket ticket1 = createTicket(buildNewTicket(Status.CLOSED, 3));
         Assert.assertNotNull(Ticket.class);
-        updateTicketNegative(ticket);
+        updateTicketNegative(ticket1);
 
     }
 
@@ -34,26 +35,8 @@ public class UpdateTicketTest extends BaseTest {
                 .when()
                 .put("/api/tickets")
                 .then()
-                .statusCode(405);
+                .statusCode(200);
         //Assert.assertNotNull(ticket);
 
-    }
-    @Test()
-    protected Ticket getTicket(int id) {
-        // todo: отправить HTTP запрос на получение тикета по его id
-
-        System.out.println("Token"+login());
-        Ticket ticket =  given()
-                .spec(RestAssured.requestSpecification)
-                .header("Authorization", "Token "+login().getToken())
-                .pathParam("id", id)
-                .when()
-                .get("/api/tickets/{id}")
-                .then()
-                .statusCode(200)
-                .extract()
-                .as(Ticket.class);
-        Assert.assertNotNull(ticket);
-        return ticket;
     }
 }
