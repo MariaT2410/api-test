@@ -20,7 +20,7 @@ public class TicketPage extends HelpdeskBasePage {
 
     private WebElement dependencies =  driver.findElement(By.xpath("//th[text()='Dependencies']/following-sibling::td[1]"));
 
-    private WebElement submitted_on =  driver.findElement(By.xpath("//th[text()='Submitted On']/following-sibling::td[1]"))''
+    private WebElement submitted_on =  driver.findElement(By.xpath("//th[text()='Submitted On']/following-sibling::td[1]"));
 
     private WebElement email =  driver.findElement(By.xpath("//th[text()='Submitter E-Mail']/following-sibling::td[1]"));
 

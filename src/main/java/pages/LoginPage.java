@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage extends HelpdeskBasePage {
 
     // поиск элемента через xpath
-    @FindBy(xpath = "//*[id='username']")
+    @FindBy(xpath = "//input[@id='username']")
     private WebElement user;
 
     // поиск элемента по id

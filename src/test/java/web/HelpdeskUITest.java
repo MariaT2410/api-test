@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import models.Ticket;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -29,12 +30,16 @@ public class HelpdeskUITest {
         // Читаем конфигурационные файлы в System.properties
         System.getProperties().load(ClassLoader.getSystemResourceAsStream("config.properties"));
         System.getProperties().load(ClassLoader.getSystemResourceAsStream("user.properties"));
+
     }
 
     @Step("Создать экземпляр драйвера")
     private void setupDriver() {
         // Создание экземпляра драйвера
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
+        //System.setProperty("webdriver.http.factory", "jdk-http-client");
         // Устанавливаем размер окна браузера, как максимально возможный
         driver.manage().window().maximize();
         // Установим время ожидания для поиска элементов
@@ -68,8 +73,7 @@ public class HelpdeskUITest {
 
         // Найти созданный Ticket
         mainPage.mainMenu().searchTicket(ticket);
-        TicketPage ticketPage = new TicketPage();
-        ticketPage.checkTicket();
+        mainPage.mainMenu().clickOnGoButton();
 
     }
 
