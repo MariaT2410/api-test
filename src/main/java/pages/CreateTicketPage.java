@@ -67,26 +67,24 @@ public class CreateTicketPage extends HelpdeskBasePage {
     private void setInputProblem(String text) {
         try {
             inputProblem.sendKeys(text);
-
-        }catch (NullPointerException e){
-            
-
-        }
+        }catch (NullPointerException e){}
 
     }
     @Step("Ввести очередь: {queue}")
     private void setInputQueue(Integer queue) {
-        new Select(selectQueue).selectByValue(String.valueOf(queue));
+        try {
+            new Select(selectQueue).selectByValue(String.valueOf(queue));
+        }catch (NullPointerException e){}
     }
-    @Step("Ввести очередь: {description}")
+    @Step("Ввести описание: {description}")
     private void setInputDescription(String description) {
         inputDescription.sendKeys(description);
     }
-    @Step("Ввести очередь: {priority}")
+    @Step("Ввести приоритет: {priority}")
     private void setInputPriority(Integer priority) {
         new Select(inputPriority).selectByValue(String.valueOf(priority));
     }
-    @Step("Ввести имя проблемы: {text}")
+    @Step("Ввести email: {email}")
     private void setInputEmail(String text) {
         inputSubmitter_email.sendKeys(text);
     }
