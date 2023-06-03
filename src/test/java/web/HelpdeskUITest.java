@@ -50,7 +50,7 @@ public class HelpdeskUITest {
 
     @Test
     public void createTicketTest() {
-        // todo: шаги тест-кейса
+        //  шаги тест-кейса
 
         MainPage mainPage = new MainPage();
         // Предусловие: открыта главная страница сайта https://at-sandbox.workbench.lanit.ru/
@@ -79,7 +79,7 @@ public class HelpdeskUITest {
 
     private Ticket buildNewTicket() {
         Ticket ticket = new Ticket();
-        // todo: заполнить поля тикета
+        // заполнить поля тикета
         ticket.setTitle("title");
         ticket.setDescription("test");
         ticket.setDue_date("31.05.2023");

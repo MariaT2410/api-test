@@ -3,9 +3,12 @@ package pages;
 import elements.MainMenu;
 import io.qameta.allure.Step;
 import models.Ticket;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 /** Страница создания тикета */
 public class CreateTicketPage extends HelpdeskBasePage {
@@ -49,6 +52,7 @@ public class CreateTicketPage extends HelpdeskBasePage {
         setInputProblem(ticket.getTitle());
         // заполнить остальные поля формы
         setInputQueue(ticket.getQueue());
+        setDue(ticket.getDue_date());
         setInputDescription(ticket.getDescription());
         setInputPriority(ticket.getPriority());
         setInputEmail(ticket.getSubmitter_email());
@@ -78,6 +82,23 @@ public class CreateTicketPage extends HelpdeskBasePage {
         inputSubmitter_email.sendKeys(text);
     }
 
+    public void setKbitem(int number) {
+        inputAttachment.sendKeys(String.valueOf(number));
+    }
+
+    public void setAssigned_to(String text){
+        id_assigned_to.sendKeys(text);
+    }
+
+    public void setDue(String text) {
+        inputDue_date.click();
+        List<WebElement> call = driver.findElements(By.xpath("//*[@id='ui-datepicker-div']/table/tbody/tr/td/a"));
+        for( WebElement a : call){
+            if(a.getText().equals(text)){
+                a.click();
+            }
+        }
+    }
 
     @Step("Нажать на кнопку создания тикета")
     private void clickOnSubmitButton() {

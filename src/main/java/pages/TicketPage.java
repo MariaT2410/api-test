@@ -1,10 +1,12 @@
 package pages;
 
 import io.qameta.allure.Step;
+import models.Dictionaries;
 import models.Ticket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 /** Страница отдельного тикета (авторизированный пользователь) */
 public class TicketPage extends HelpdeskBasePage {
@@ -52,6 +54,16 @@ public class TicketPage extends HelpdeskBasePage {
     @Step("Проверить значение полей на странице тикета")
     public void checkTicket(Ticket ticket) {
         // todo: добавить реализацию метода
+        String  title_ = title.getText().substring(title.getText().indexOf(" ")+1).replace(" [Open]", "");
+        String description_ = description.getText();
+        String email_ = email.getText();
+        Assert.assertTrue(title.getText().contains(ticket.getTitle()), "Не соответствует заголовок");
+        Assert.assertTrue(description.getText().contains(ticket.getDescription()), "Не соответствует описание");
+        Assert.assertTrue(email.getText().contains(ticket.getSubmitter_email()), "Не соответствует email");
+
+        Assert.assertEquals(Dictionaries.getPriority(ticket.getPriority()).contains(priority.getText().replace("Priority", "")), "не соответствует приоритет");
+        Assert.assertEquals(Dictionaries.getQueue(ticket.getQueue()).contains(queue.getText()), "Не соответствует очередь");
+        //Assert.assertTrue(queue.getText().contains(ticket.getQueue().toString()));
 
     }
 }
