@@ -62,6 +62,11 @@ public class HelpdeskUITest {
         ticket = buildNewTicket();
         //Создать Ticket
         newTicket.createTicket(ticket);
+        ViewPage viewPage = new ViewPage();
+        viewPage.checkTicket(ticket);
+        viewPage.getTicketTitle();
+        viewPage.saveId(ticket);
+
 
 
         //Log in
@@ -71,14 +76,22 @@ public class HelpdeskUITest {
         loginPage.login(System.getProperty("user"), System.getProperty("password"));
 
 
+
         // Найти созданный Ticket
         mainPage.mainMenu().searchTicket(ticket);
-        //ViewPage viewPage = new ViewPage();
-        TicketsPage ticketViewPage = new TicketsPage();
-        ticketViewPage.openTicket(ticket);
 
 
-        mainPage.mainMenu().clickOnGoButton();
+        TicketsPage ticketsPage = new TicketsPage();
+        ticketsPage.openTicket(ticket);
+
+        TicketPage ticketPage = new TicketPage();
+        ticketPage.checkTicket(ticket);
+
+
+
+       mainPage.mainMenu().clickOnGoButton();
+
+
 
     }
 
@@ -86,16 +99,16 @@ public class HelpdeskUITest {
         Ticket ticket = new Ticket();
         // заполнить поля тикета
 
-        ticket.setTitle("title");
-        ticket.setDescription("test");
-        ticket.setDue_date("31.05.2023");
+        ticket.setTitle("тестпроблемы2");
+        ticket.setDescription("тест");
+        ticket.setDue_date("03.06.2023");
         ticket.setPriority(2);
         ticket.setQueue(1);
-        ticket.setSubmitter_email("aaa@mail.ru");
-
+        ticket.setSubmitter_email("exam@mail.ru");
 
         return ticket;
     }
+
 
     @AfterTest
     public void close() {
@@ -106,4 +119,6 @@ public class HelpdeskUITest {
             driver.quit();
         }
     }
+
+
 }

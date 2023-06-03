@@ -45,9 +45,8 @@ public class ViewPage extends HelpdeskBasePage {
         //Assert.assertTrue(getTicketTitle().contains(ticket.getTitle()), "Имя тикета не соответствует");
         Assert.assertTrue(description.getText().contains(ticket.getDescription()), "Не соответствует описание");
         Assert.assertTrue(email.getText().contains(ticket.getSubmitter_email()), "Не соответствует email");
-
-        Assert.assertEquals(Dictionaries.getPriority(ticket.getPriority()).contains(priority.getText().replace("Priority", "")), "не соответствует приоритет");
-        Assert.assertEquals(Dictionaries.getQueue(ticket.getQueue()).contains(queue.getText()), "Не соответствует очередь");
+        Assert.assertTrue(Dictionaries.getQueue(ticket.getQueue()).contains(queue.getText().replace("Queue: ", "")), "Не соответствует очередь");
+        Assert.assertTrue(Dictionaries.getPriority(ticket.getPriority()).contains(priority.getText().replace("Priority", "")), "не соответствует приоритет");
         //  добавить проверки
         return this;
     }

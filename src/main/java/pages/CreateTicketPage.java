@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.Random;
 
 /** Страница создания тикета */
 public class CreateTicketPage extends HelpdeskBasePage {
@@ -47,8 +48,9 @@ public class CreateTicketPage extends HelpdeskBasePage {
 
 
     @Step("Создать тикет")
-    public CreateTicketPage createTicket(Ticket ticket) {
-
+    public void createTicket(Ticket ticket) {
+        ////CreateTicketPage
+        //ticket.setId(new Random().nextInt(100000));
         setInputProblem(ticket.getTitle());
         // заполнить остальные поля формы
         setInputQueue(ticket.getQueue());
@@ -58,7 +60,7 @@ public class CreateTicketPage extends HelpdeskBasePage {
         setInputEmail(ticket.getSubmitter_email());
 
         clickOnSubmitButton();
-        return this;
+
     }
 
     @Step("Ввести имя проблемы: {text}")

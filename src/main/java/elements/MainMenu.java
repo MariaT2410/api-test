@@ -44,6 +44,7 @@ public class MainMenu {
     public void searchTicket(Ticket ticket) {
         setInputSearch(ticket.getTitle())
                 .clickOnGoButton();
+        System.out.println("ok");
     }
 
     /* Если после вызова void метода, может потребоваться вызов другого метода этого же класса,

@@ -15,6 +15,7 @@ public class TicketsPage extends HelpdeskBasePage {
     @FindBy(xpath = "//div[@class='tickettitle']/a")
     private List<WebElement> ticketsHref;
 
+
     public TicketsPage() {
         PageFactory.initElements(driver, this);
     }
@@ -27,12 +28,21 @@ public class TicketsPage extends HelpdeskBasePage {
     @Step("Открыть тикет с id {ticket.id}")
     public void openTicket(Ticket ticket) {
         String id = String.valueOf(ticket.getId());
+        System.out.println(id);
+        String title = String.valueOf(ticket.getTitle());
+        for (WebElement i : ticketsHref) {
+            System.out.println(i.getText());
+        }
+
+
         ticketsHref.stream()
                 .filter(WebElement::isDisplayed)
-                .filter(ticketHref -> ticketHref.getText().startsWith(id))
+                .filter(ticketHref -> ticketHref.getText().startsWith(id+". "+title))
                 .findFirst()
                 .orElseThrow(() -> new AssertionError("Не найден тикет с id " + id))
                 .click();
+
+
     }
 
 }

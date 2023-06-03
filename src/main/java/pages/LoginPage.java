@@ -26,16 +26,14 @@ public class LoginPage extends HelpdeskBasePage {
 
     /**
      * Авторизация пользователя
-     *
-     * @param user     логин пользователя
+     *  @param user     логин пользователя
      * @param password пароль пользователя
      */
     @Step("Авторизация пользователя")
-    public LoginPage login(String user, String password) {
+    public void login(String user, String password) {
         setUser(user);
         setPassword(password);
         clickOnLoginButton();
-        return this;
     }
 
     @Step("Ввести логин {user}")

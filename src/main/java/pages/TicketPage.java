@@ -14,9 +14,9 @@ public class TicketPage extends HelpdeskBasePage {
     // поиск элемента через xpath
     private WebElement title = driver.findElement(By.xpath("//h3"));
 
-    private WebElement queue = driver.findElement(By.xpath("//h3/followinh-sibling::text()"));
+    //private WebElement queue = driver.findElement(By.xpath("//h3/following-sibling::text()"));
 
-    private WebElement due_date = driver.findElement(By.xpath("//th[text()='Due Date']/following-sibling::td[1]"));
+    //private WebElement due_date = driver.findElement(By.xpath("//th[text()='Due Date']/following-sibling::td[1]"));
 
     private WebElement priority =  driver.findElement(By.xpath("//th[text()='Priority']/following-sibling::td[1]"));
 
@@ -54,16 +54,13 @@ public class TicketPage extends HelpdeskBasePage {
     @Step("Проверить значение полей на странице тикета")
     public void checkTicket(Ticket ticket) {
         // todo: добавить реализацию метода
-        String  title_ = title.getText().substring(title.getText().indexOf(" ")+1).replace(" [Open]", "");
-        String description_ = description.getText();
-        String email_ = email.getText();
+
         Assert.assertTrue(title.getText().contains(ticket.getTitle()), "Не соответствует заголовок");
         Assert.assertTrue(description.getText().contains(ticket.getDescription()), "Не соответствует описание");
         Assert.assertTrue(email.getText().contains(ticket.getSubmitter_email()), "Не соответствует email");
 
-        Assert.assertEquals(Dictionaries.getPriority(ticket.getPriority()).contains(priority.getText().replace("Priority", "")), "не соответствует приоритет");
-        Assert.assertEquals(Dictionaries.getQueue(ticket.getQueue()).contains(queue.getText()), "Не соответствует очередь");
-        //Assert.assertTrue(queue.getText().contains(ticket.getQueue().toString()));
+        Assert.assertTrue(Dictionaries.getPriority(ticket.getPriority()).contains(priority.getText().replace("Priority", "")), "не соответствует приоритет");
+        //Assert.assertTrue(Dictionaries.getQueue(ticket.getQueue()).contains(queue.getText().replace("Queue: ", "")), "Не соответствует очередь");
 
     }
 }
