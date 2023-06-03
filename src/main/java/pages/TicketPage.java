@@ -53,12 +53,13 @@ public class TicketPage extends HelpdeskBasePage {
 
     @Step("Проверить значение полей на странице тикета")
     public void checkTicket(Ticket ticket) {
-        // todo: добавить реализацию метода
+        // добавить реализацию метода
 
         Assert.assertTrue(title.getText().contains(ticket.getTitle()), "Не соответствует заголовок");
         Assert.assertTrue(description.getText().contains(ticket.getDescription()), "Не соответствует описание");
         Assert.assertTrue(email.getText().contains(ticket.getSubmitter_email()), "Не соответствует email");
 
+        Assert.assertTrue(Dictionaries.getPriority(ticket.getPriority()).contains(priority.getText().replace("Priority", "")), "не соответствует приоритет");
         Assert.assertTrue(queue.getText().replace("Queue: ", "").contains(Dictionaries.getQueue(ticket.getQueue())), "Не соответствует очередь");
 
     }
