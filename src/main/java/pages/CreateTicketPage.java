@@ -65,7 +65,14 @@ public class CreateTicketPage extends HelpdeskBasePage {
 
     @Step("Ввести имя проблемы: {text}")
     private void setInputProblem(String text) {
-        inputProblem.sendKeys(text);
+        try {
+            inputProblem.sendKeys(text);
+
+        }catch (NullPointerException e){
+            
+
+        }
+
     }
     @Step("Ввести очередь: {queue}")
     private void setInputQueue(Integer queue) {

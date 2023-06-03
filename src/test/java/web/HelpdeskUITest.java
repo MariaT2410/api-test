@@ -99,7 +99,7 @@ public class HelpdeskUITest {
         Ticket ticket = new Ticket();
         // заполнить поля тикета
 
-        ticket.setTitle("тестпроблемы2");
+        ticket.setTitle("тестпроблемы3");
         ticket.setDescription("тест");
         ticket.setDue_date("03.06.2023");
         ticket.setPriority(2);
