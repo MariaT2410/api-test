@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import models.Dictionaries;
 import models.Ticket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -42,8 +43,12 @@ public class ViewPage extends HelpdeskBasePage {
     public ViewPage checkTicket(Ticket ticket) {
         Assert.assertTrue(getTicketTitle().contains(ticket.getTitle()), "Имя тикета не соответствует");
         //Assert.assertTrue(getTicketTitle().contains(ticket.getTitle()), "Имя тикета не соответствует");
+        Assert.assertTrue(description.getText().contains(ticket.getDescription()), "Не соответствует описание");
+        Assert.assertTrue(email.getText().contains(ticket.getSubmitter_email()), "Не соответствует email");
 
-        // todo: добавить проверки
+        Assert.assertEquals(Dictionaries.getPriority(ticket.getPriority()).contains(priority.getText().replace("Priority", "")), "не соответствует приоритет");
+        Assert.assertEquals(Dictionaries.getQueue(ticket.getQueue()).contains(queue.getText()), "Не соответствует очередь");
+        //  добавить проверки
         return this;
     }
 

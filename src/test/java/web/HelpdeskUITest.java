@@ -73,6 +73,11 @@ public class HelpdeskUITest {
 
         // Найти созданный Ticket
         mainPage.mainMenu().searchTicket(ticket);
+        //ViewPage viewPage = new ViewPage();
+        TicketsPage ticketViewPage = new TicketsPage();
+        ticketViewPage.openTicket(ticket);
+
+
         mainPage.mainMenu().clickOnGoButton();
 
     }
@@ -80,12 +85,15 @@ public class HelpdeskUITest {
     private Ticket buildNewTicket() {
         Ticket ticket = new Ticket();
         // заполнить поля тикета
+
         ticket.setTitle("title");
         ticket.setDescription("test");
         ticket.setDue_date("31.05.2023");
         ticket.setPriority(2);
         ticket.setQueue(1);
         ticket.setSubmitter_email("aaa@mail.ru");
+
+
         return ticket;
     }
 
