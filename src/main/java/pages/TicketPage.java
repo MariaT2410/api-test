@@ -14,7 +14,7 @@ public class TicketPage extends HelpdeskBasePage {
     // поиск элемента через xpath
     private WebElement title = driver.findElement(By.xpath("//h3"));
 
-    //private WebElement queue = driver.findElement(By.xpath("//h3/following-sibling::text()"));
+    private WebElement queue = driver.findElement(By.xpath("//h3/following-sibling::text()"));
 
     //private WebElement due_date = driver.findElement(By.xpath("//th[text()='Due Date']/following-sibling::td[1]"));
 
@@ -60,7 +60,7 @@ public class TicketPage extends HelpdeskBasePage {
         Assert.assertTrue(email.getText().contains(ticket.getSubmitter_email()), "Не соответствует email");
 
         Assert.assertTrue(Dictionaries.getPriority(ticket.getPriority()).contains(priority.getText().replace("Priority", "")), "не соответствует приоритет");
-        //Assert.assertTrue(Dictionaries.getQueue(ticket.getQueue()).contains(queue.getText().replace("Queue: ", "")), "Не соответствует очередь");
+        Assert.assertTrue(Dictionaries.getQueue(ticket.getQueue()).contains(queue.getText().replace("Queue: ", "")), "Не соответствует очередь");
 
     }
 }
