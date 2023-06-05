@@ -28,7 +28,10 @@ public class TicketsPage extends HelpdeskBasePage {
     @Step("Открыть тикет с id {ticket.id}")
     public void openTicket(Ticket ticket) {
         String id = String.valueOf(ticket.getId());
+        //System.out.println(id);
         String title = String.valueOf(ticket.getTitle());
+
+
 
 
         ticketsHref.stream()

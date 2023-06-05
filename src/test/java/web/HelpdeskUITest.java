@@ -65,11 +65,12 @@ public class HelpdeskUITest {
         ticket = buildNewTicket();
         //Создать Ticket
         newTicket.createTicket(ticket);
-        //ViewPage viewPage = new ViewPage();
 
-        //viewPage.checkTicket(ticket).saveId(ticket);
-        //viewPage.getTicketTitle();
-        //viewPage.saveId(ticket);
+        ViewPage viewPage = new ViewPage();
+
+        viewPage.checkTicket(ticket);
+        viewPage.getTicketTitle();
+        viewPage.saveId(ticket);
 
         //Log in
         LoginPage loginPage = new LoginPage();
@@ -96,9 +97,9 @@ public class HelpdeskUITest {
         Ticket ticket = new Ticket();
         // заполнить поля тикета
 
-        ticket.setTitle("тестпроблемы3");
+        ticket.setTitle("тестпроблемы5");
         ticket.setDescription("тест");
-        ticket.setDue_date("03.06.2023");
+        ticket.setDue_date("05.06.2023");
         ticket.setPriority(2);
         ticket.setQueue(1);
         ticket.setSubmitter_email("exam@mail.ru");
