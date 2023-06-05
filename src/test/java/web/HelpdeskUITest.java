@@ -102,15 +102,11 @@ public class HelpdeskUITest {
         // заполнить поля тикета
 
         ticket.setTitle("тестпроблемы3");
-        Assert.assertNotNull(ticket.getTitle());
         ticket.setDescription("тест");
         ticket.setDue_date("03.06.2023");
         ticket.setPriority(2);
         ticket.setQueue(1);
-        Assert.assertNotNull(ticket.getQueue());
         ticket.setSubmitter_email("exam@mail.ru");
-        Assert.assertNotNull(ticket.getSubmitter_email());
-
         return ticket;
     }
 
