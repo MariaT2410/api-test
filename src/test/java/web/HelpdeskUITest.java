@@ -71,15 +71,11 @@ public class HelpdeskUITest {
         viewPage.getTicketTitle();
         //viewPage.saveId(ticket);
 
-
-
         //Log in
         LoginPage loginPage = new LoginPage();
         mainPage.mainMenu().clickOnLogInButton();
         //Авторизация
         loginPage.login(System.getProperty("user"), System.getProperty("password"));
-
-
 
         // Найти созданный Ticket
         mainPage.mainMenu().searchTicket(ticket);
@@ -90,7 +86,6 @@ public class HelpdeskUITest {
 
         TicketPage ticketPage = new TicketPage();
         ticketPage.checkTicket(ticket);
-
 
 
        mainPage.mainMenu().clickOnGoButton();

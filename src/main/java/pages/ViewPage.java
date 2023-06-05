@@ -17,7 +17,7 @@ public class ViewPage extends HelpdeskBasePage {
 
     /* Инициализация сразу при объявлении элемента.
        Элемент должен присутствовать на странице браузера в момент создания объекта страницы new ViewPage() */
-    private WebElement queue = driver.findElement(By.xpath("//th[contains(text(), 'Queue:')]"));
+    private WebElement queue = driver.findElement(By.xpath("//th[contains(text(), 'Queue: ')]"));
     private WebElement email = driver.findElement(By.xpath("//th[text()='Submitter E-Mail']/following-sibling::td[1]"));
     private WebElement priority = driver.findElement(By.xpath("//th[text()='Priority']/following-sibling::td[1]"));
 
