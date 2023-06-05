@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -100,11 +101,14 @@ public class HelpdeskUITest {
         // заполнить поля тикета
 
         ticket.setTitle("тестпроблемы3");
+        Assert.assertNotNull(ticket.getTitle());
         ticket.setDescription("тест");
         ticket.setDue_date("03.06.2023");
         ticket.setPriority(2);
         ticket.setQueue(1);
+        Assert.assertNotNull(ticket.getQueue());
         ticket.setSubmitter_email("exam@mail.ru");
+        Assert.assertNotNull(ticket.getSubmitter_email());
 
         return ticket;
     }
