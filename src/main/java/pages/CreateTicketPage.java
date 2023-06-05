@@ -6,6 +6,7 @@ import models.Ticket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
@@ -15,7 +16,7 @@ import java.util.Random;
 /** Страница создания тикета */
 public class CreateTicketPage extends HelpdeskBasePage {
 
-    //  добавить элементам локтаоры через @FindBy СДЕЛАНО
+    //  добавить элементам локтаоры через @FindBy
     @FindBy(xpath = "//*[@id ='id_queue']")
     private WebElement selectQueue;
 
@@ -47,6 +48,10 @@ public class CreateTicketPage extends HelpdeskBasePage {
 
     //  проинициализировать элементы???
 
+
+    public CreateTicketPage() {
+        PageFactory.initElements(driver, this);
+    }
 
     @Step("Создать тикет")
     public void createTicket(Ticket ticket) {

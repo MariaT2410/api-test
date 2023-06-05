@@ -58,7 +58,7 @@ public class HelpdeskUITest {
         MainPage mainPage = new MainPage();
         // Предусловие: открыта главная страница сайта https://at-sandbox.workbench.lanit.ru/
         driver.get("https://at-sandbox.workbench.lanit.ru/");
-        CreateTicketPage newTicket = PageFactory.initElements(driver,CreateTicketPage.class);
+        CreateTicketPage newTicket = new CreateTicketPage();
 
         //NewTicket в гл меню
         mainPage.mainMenu().clickOnNewTicketButton();
