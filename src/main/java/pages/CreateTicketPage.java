@@ -104,7 +104,6 @@ public class CreateTicketPage extends HelpdeskBasePage {
 
     public void setDue(String text) {
         try {
-
         inputDue_date.click();
         List<WebElement> call = driver.findElements(By.xpath("//*[@id='ui-datepicker-div']/table/tbody/tr/td/a"));
         for( WebElement a : call){
@@ -118,7 +117,6 @@ public class CreateTicketPage extends HelpdeskBasePage {
     @Step("Нажать на кнопку создания тикета")
     private void clickOnSubmitButton() {
         try {
-
             submitTicketButton.click();
         }catch (NullPointerException e){}
     }

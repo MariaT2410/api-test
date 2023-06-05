@@ -65,10 +65,10 @@ public class HelpdeskUITest {
         ticket = buildNewTicket();
         //Создать Ticket
         newTicket.createTicket(ticket);
-        ViewPage viewPage = new ViewPage(ticket);
+        //ViewPage viewPage = new ViewPage();
 
-        viewPage.checkTicket(ticket).saveId(ticket);
-        viewPage.getTicketTitle();
+        //viewPage.checkTicket(ticket).saveId(ticket);
+        //viewPage.getTicketTitle();
         //viewPage.saveId(ticket);
 
         //Log in

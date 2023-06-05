@@ -34,7 +34,7 @@ public class ViewPage extends HelpdeskBasePage {
     private WebElement caption;
 
 
-    public ViewPage(Ticket ticket) {
+    public ViewPage() {
         // В данном случае инициализация через PageFactory не нужна,
         // но можем проинициализировать элементы по локаторам (если элементы отображаются)
         caption = driver.findElement(captionLocator);
@@ -43,10 +43,10 @@ public class ViewPage extends HelpdeskBasePage {
     @Step("Проверить значение полей на карточке тикета")
     public ViewPage checkTicket(Ticket ticket) {
         Assert.assertTrue(getTicketTitle().contains(ticket.getTitle()), "Имя тикета не соответствует");
-        System.out.println(queue.getText().replace("Queue: ", ""));
+        //System.out.println(queue.getText().replace("Queue: ", ""));
         //Assert.assertTrue(getTicketTitle().contains(ticket.getTitle()), "Имя тикета не соответствует");
         Assert.assertTrue(description.getText().contains(ticket.getDescription()), "Не соответствует описание");
-        System.out.println(email.getText());
+        //System.out.println(email.getText());
         Assert.assertTrue(email.getText().contains(ticket.getSubmitter_email()), "Не соответствует email");
         Assert.assertTrue(Dictionaries.getQueue(ticket.getQueue()).contains(queue.getText().replace("Queue: ", "")), "Не соответствует очередь");
         Assert.assertTrue(Dictionaries.getPriority(ticket.getPriority()).contains(priority.getText().replace("Priority", "")), "не соответствует приоритет");
