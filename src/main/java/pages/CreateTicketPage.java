@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import java.util.List;
 import java.util.Random;
@@ -52,12 +53,15 @@ public class CreateTicketPage extends HelpdeskBasePage {
         ////CreateTicketPage
         //ticket.setId(new Random().nextInt(100000));
         setInputProblem(ticket.getTitle());
+        Assert.assertNotNull(ticket.getTitle());
         // заполнить остальные поля формы
         setInputQueue(ticket.getQueue());
+        Assert.assertNotNull(ticket.getQueue());
         setDue(ticket.getDue_date());
         setInputDescription(ticket.getDescription());
         setInputPriority(ticket.getPriority());
         setInputEmail(ticket.getSubmitter_email());
+
 
         clickOnSubmitButton();
 
@@ -66,13 +70,10 @@ public class CreateTicketPage extends HelpdeskBasePage {
     @Step("Ввести имя проблемы: {text}")
     private void setInputProblem(String text) {
         inputProblem.sendKeys(text);
-
     }
     @Step("Ввести очередь: {queue}")
     private void setInputQueue(Integer queue) {
-        try {
-            new Select(selectQueue).selectByValue(String.valueOf(queue));
-        }catch (NullPointerException e){}
+        new Select(selectQueue).selectByValue(String.valueOf(queue));
     }
     @Step("Ввести описание: {description}")
     private void setInputDescription(String description) {

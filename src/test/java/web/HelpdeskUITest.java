@@ -15,6 +15,8 @@ import pages.*;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.Assert.assertEquals;
+
 public class HelpdeskUITest {
 
     private WebDriver driver;
