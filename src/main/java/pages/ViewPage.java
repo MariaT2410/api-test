@@ -17,7 +17,7 @@ public class ViewPage extends HelpdeskBasePage {
 
     /* Инициализация сразу при объявлении элемента.
        Элемент должен присутствовать на странице браузера в момент создания объекта страницы new ViewPage() */
-    //private WebElement queue = driver.findElement(By.xpath("//th[contains(text(), 'Queue: ')]"));
+    private WebElement queue = driver.findElement(By.xpath("//th[contains(text(), 'Queue:')]"));
     private WebElement email = driver.findElement(By.xpath("//th[text()='Submitter E-Mail']/following-sibling::td[1]"));
     private WebElement priority = driver.findElement(By.xpath("//th[text()='Priority']/following-sibling::td[1]"));
 
@@ -42,10 +42,12 @@ public class ViewPage extends HelpdeskBasePage {
     @Step("Проверить значение полей на карточке тикета")
     public ViewPage checkTicket(Ticket ticket) {
         Assert.assertTrue(getTicketTitle().contains(ticket.getTitle()), "Имя тикета не соответствует");
+        System.out.println(queue.getText().replace("Queue: ", ""));
         //Assert.assertTrue(getTicketTitle().contains(ticket.getTitle()), "Имя тикета не соответствует");
         Assert.assertTrue(description.getText().contains(ticket.getDescription()), "Не соответствует описание");
+        System.out.println(email.getText());
         Assert.assertTrue(email.getText().contains(ticket.getSubmitter_email()), "Не соответствует email");
-        //Assert.assertTrue(Dictionaries.getQueue(ticket.getQueue()).contains(queue.getText().replace("Queue: ", "")), "Не соответствует очередь");
+        Assert.assertTrue(Dictionaries.getQueue(ticket.getQueue()).contains(queue.getText().replace("Queue: ", "")), "Не соответствует очередь");
         Assert.assertTrue(Dictionaries.getPriority(ticket.getPriority()).contains(priority.getText().replace("Priority", "")), "не соответствует приоритет");
         //  добавить проверки
         return this;

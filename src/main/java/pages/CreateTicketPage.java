@@ -51,47 +51,52 @@ public class CreateTicketPage extends HelpdeskBasePage {
     @Step("Создать тикет")
     public void createTicket(Ticket ticket) {
         ////CreateTicketPage
-        setInputProblem(ticket.getTitle());
-        // заполнить остальные поля формы
-        setInputQueue(ticket.getQueue());
-        setDue(ticket.getDue_date());
-        setInputDescription(ticket.getDescription());
-        setInputPriority(ticket.getPriority());
-        setInputEmail(ticket.getSubmitter_email());
+        try {
 
-        clickOnSubmitButton();
+
+            setInputProblem(ticket.getTitle());
+            // заполнить остальные поля формы
+            setInputQueue(ticket.getQueue());
+        }catch (NullPointerException e){}
+            setDue(ticket.getDue_date());
+            setInputDescription(ticket.getDescription());
+            setInputPriority(ticket.getPriority());
+            setInputEmail(ticket.getSubmitter_email());
+
+            clickOnSubmitButton();
+
 
     }
 
     @Step("Ввести имя проблемы: {text}")
     private void setInputProblem(String text) {
-        try {
+        //try {
         inputProblem.sendKeys(text);
-        }catch (NullPointerException e){}
+        //}catch (NullPointerException e){}
     }
     @Step("Ввести очередь: {queue}")
     private void setInputQueue(Integer queue) {
-        try {
+       // try {
             new Select(selectQueue).selectByValue(String.valueOf(queue));
-        }catch (NullPointerException e){}
+       // }catch (NullPointerException e){}
     }
     @Step("Ввести описание: {description}")
     private void setInputDescription(String description) {
-        try {
+        //try {
         inputDescription.sendKeys(description);
-        }catch (NullPointerException e){}
+       // }catch (NullPointerException e){}
     }
     @Step("Ввести приоритет: {priority}")
     private void setInputPriority(Integer priority) {
-        try {
+        //try {
         new Select(inputPriority).selectByValue(String.valueOf(priority));
-        }catch (NullPointerException e){}
+        //}catch (NullPointerException e){}
     }
     @Step("Ввести email: {email}")
     private void setInputEmail(String text) {
-        try {
+       // try {
         inputSubmitter_email.sendKeys(text);
-        }catch (NullPointerException e){}
+        //}catch (NullPointerException e){}
     }
 
     public void setKbitem(int number) {
@@ -103,7 +108,7 @@ public class CreateTicketPage extends HelpdeskBasePage {
     }
 
     public void setDue(String text) {
-        try {
+        //try {
 
         inputDue_date.click();
         List<WebElement> call = driver.findElements(By.xpath("//*[@id='ui-datepicker-div']/table/tbody/tr/td/a"));
@@ -112,7 +117,7 @@ public class CreateTicketPage extends HelpdeskBasePage {
                 a.click();
             }
         }
-        }catch (NullPointerException e){}
+        //}catch (NullPointerException e){}
     }
 
     @Step("Нажать на кнопку создания тикета")
