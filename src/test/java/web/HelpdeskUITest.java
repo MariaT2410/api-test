@@ -65,7 +65,7 @@ public class HelpdeskUITest {
         ticket = buildNewTicket();
         //Создать Ticket
         newTicket.createTicket(ticket);
-        ViewPage viewPage = new ViewPage();
+        ViewPage viewPage = new ViewPage(ticket);
 
         viewPage.checkTicket(ticket).saveId(ticket);
         viewPage.getTicketTitle();

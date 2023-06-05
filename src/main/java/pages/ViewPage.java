@@ -5,6 +5,7 @@ import models.Dictionaries;
 import models.Ticket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -33,7 +34,7 @@ public class ViewPage extends HelpdeskBasePage {
     private WebElement caption;
 
 
-    public ViewPage() {
+    public ViewPage(Ticket ticket) {
         // В данном случае инициализация через PageFactory не нужна,
         // но можем проинициализировать элементы по локаторам (если элементы отображаются)
         caption = driver.findElement(captionLocator);
