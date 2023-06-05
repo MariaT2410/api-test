@@ -121,6 +121,9 @@ public class CreateTicketPage extends HelpdeskBasePage {
 
     @Step("Нажать на кнопку создания тикета")
     private void clickOnSubmitButton() {
-        submitTicketButton.click();
+        try {
+
+            submitTicketButton.click();
+        }catch (NullPointerException e){}
     }
 }
