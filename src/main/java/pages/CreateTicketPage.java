@@ -51,17 +51,13 @@ public class CreateTicketPage extends HelpdeskBasePage {
     @Step("Создать тикет")
     public void createTicket(Ticket ticket) {
         ////CreateTicketPage
-        //ticket.setId(new Random().nextInt(100000));
         setInputProblem(ticket.getTitle());
-        //Assert.assertNotNull(ticket.getTitle());
         // заполнить остальные поля формы
         setInputQueue(ticket.getQueue());
-        //Assert.assertNotNull(ticket.getQueue());
         setDue(ticket.getDue_date());
         setInputDescription(ticket.getDescription());
         setInputPriority(ticket.getPriority());
         setInputEmail(ticket.getSubmitter_email());
-
 
         clickOnSubmitButton();
 

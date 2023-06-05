@@ -66,9 +66,10 @@ public class HelpdeskUITest {
         //Создать Ticket
         newTicket.createTicket(ticket);
         ViewPage viewPage = new ViewPage();
-        viewPage.checkTicket(ticket);
+
+        viewPage.checkTicket(ticket).saveId(ticket);
         viewPage.getTicketTitle();
-        viewPage.saveId(ticket);
+        //viewPage.saveId(ticket);
 
 
 
@@ -93,8 +94,6 @@ public class HelpdeskUITest {
 
 
        mainPage.mainMenu().clickOnGoButton();
-
-
 
     }
 
