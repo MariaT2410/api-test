@@ -1,0 +1,9 @@
+{
+  "status": "${status}",
+  "priority": "${priority}",
+  "title": "${title}",
+  "submitter_email": "${submitter_email}",
+  "assigned_to": "${assigned_to}",
+  "due_date": "${due_date}",
+  "queue": "${queue}"
+}
